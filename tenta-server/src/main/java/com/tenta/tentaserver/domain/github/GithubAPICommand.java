@@ -1,6 +1,7 @@
 package com.tenta.tentaserver.domain.github;
 
 import com.tenta.tentaserver.domain.APICommand;
+import com.tenta.tentaserver.utils.StringUtils;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 
@@ -28,12 +29,8 @@ public enum GithubAPICommand implements APICommand {
 
     @Override
     public String getURL(Map<String, String> map) {
-        String modifyURL = this.url;
-        for (Map.Entry<String, String> mapEntry : map.entrySet()) {
-            modifyURL = modifyURL.replaceAll(mapEntry.getKey(), mapEntry.getValue());
-        }
-        modifyURL = modifyURL.replaceAll("[{}]", "");
-        return BASE_URL + modifyURL;
+        String convertURL = StringUtils.replaceAll(this.url, map);
+        return BASE_URL + convertURL;
     }
 
     @Override
