@@ -9,15 +9,24 @@ import SwiftUI
 
 struct GithubLoginButton: View {
     @Environment(\.colorScheme) var colorScheme
-    @StateObject var viewModel = GithubLoginViewModel()
+    
+    private let loginURL: URL?
+    private let completion: (URL) -> Void
+
+    init(url: URL?, completion: @escaping (URL) -> Void) {
+        self.loginURL = url
+        self.completion = completion
+    }
 
     var body: some View {
-        Link(destination: viewModel.githubLoginURL!) {
+        if let url = loginURL {
+            Link(destination: url) {
+                frameBody
+            }
+            .onOpenURL(perform: completion)
+        } else {
             frameBody
         }
-        .onOpenURL(perform: { url in
-            viewModel.receive(url: url)
-        })
     }
 
     private var frameBody: some View {
@@ -50,9 +59,10 @@ struct GithubLoginButton: View {
 
 struct GithubLoginButton_Previews: PreviewProvider {
     static var previews: some View {
-        GithubLoginButton()
+        let viewModel = LoginViewModel()
+
+        GithubLoginButton(url: viewModel.githubLoginURL, completion: viewModel.githubLoginCompletion)
             .frame(width: 300, height: 50)
             .environment(\.colorScheme, .dark)
-            .environmentObject(ModelData())
     }
 }

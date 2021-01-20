@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct LoginView: View {
+    @StateObject private var viewModel = LoginViewModel()
+
     var body: some View {
         VStack {
             Spacer()
-            Text("Tenta")
+            
+            Text(viewModel.title)
                 .font(.largeTitle)
                 .bold()
 
             Spacer()
 
-            GithubLoginButton()
+            GithubLoginButton(url: viewModel.githubLoginURL, completion: viewModel.githubLoginCompletion)
                 .aspectRatio(10, contentMode: .fit)
                 .padding([.leading, .trailing], 30)
                 .padding([.top, .bottom], 20)
