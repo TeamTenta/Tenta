@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-struct GithubLogoImage: View {
-    var body: some View {
-        Image("github_icon")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .cornerRadius(20)
-            .padding(10)
-    }
-}
-
 struct GithubLoginButton: View {
     @Environment(\.colorScheme) var colorScheme
     @StateObject var viewModel = GithubLoginViewModel()
