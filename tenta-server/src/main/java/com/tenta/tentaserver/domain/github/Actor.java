@@ -1,13 +1,26 @@
 package com.tenta.tentaserver.domain.github;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 public class Actor {
 
-    public long id;
-    public String login;
-    public String url;
+    @JsonProperty("login")
+    private String username;
+    private String url;
 
     @JsonProperty("avatar_url")
-    public String avatarUrl;
+    private String avatarUrl;
+
+    public Actor() {
+    }
+
+    @Builder
+    public Actor(String username, String url, String avatarUrl) {
+        this.username = username;
+        this.url = url;
+        this.avatarUrl = avatarUrl;
+    }
 }
