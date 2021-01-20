@@ -14,9 +14,9 @@ struct LoginView: View {
             Text("Tenta")
                 .font(.largeTitle)
                 .bold()
-            
+
             Spacer()
-            
+
             GithubLoginButton()
                 .aspectRatio(10, contentMode: .fit)
                 .padding([.leading, .trailing], 30)
