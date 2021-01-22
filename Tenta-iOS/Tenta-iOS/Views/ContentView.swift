@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var modelData: ModelData
-    
+
     var body: some View {
         LoginView(viewModel: LoginViewModel(modelData.githubAPI))
     }
