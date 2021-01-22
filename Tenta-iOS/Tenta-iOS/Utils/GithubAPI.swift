@@ -33,6 +33,8 @@ extension GithubAPIManager: GithubLogin {
     }
 
     func githubLoginCompletion(_ url: URL) {
-        print(url)
+        guard url.absoluteString.starts(with: "tenta://"),
+              let token = url.absoluteString.components(separatedBy: "tenta://").last.map({ String($0) }) else { return }
+        self.token = token
     }
 }
