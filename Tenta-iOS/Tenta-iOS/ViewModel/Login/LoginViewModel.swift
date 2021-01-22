@@ -8,24 +8,13 @@
 import Foundation
 
 final class LoginViewModel: ObservableObject {
+    private let githubLogin: GithubLogin
     let title = "Tenta"
-}
 
-// MARK: Github Login
-extension LoginViewModel {
-    var githubLoginURL: URL? {
-        let clientID = ""
-        let scope = "repo, user"
-        let urlString = "https://github.com/login/oauth/authorize"
-        var components = URLComponents(string: urlString)!
-        components.queryItems = [
-            URLQueryItem(name: "client_id", value: clientID),
-            URLQueryItem(name: "scope", value: scope)
-        ]
-        return components.url
-    }
+    var url: URL? { githubLogin.githubLoginURL }
+    var completion: (URL) -> Void { githubLogin.githubLoginCompletion }
 
-    func githubLoginCompletion(url: URL) {
-        print(url)
+    init(_ githubLogin: GithubLogin) {
+        self.githubLogin = githubLogin
     }
 }

@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var modelData: ModelData
+    
     var body: some View {
-        LoginView()
+        LoginView(viewModel: LoginViewModel(modelData.githubAPI))
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(ModelData())
     }
 }

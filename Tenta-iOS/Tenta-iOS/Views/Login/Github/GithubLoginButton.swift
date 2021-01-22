@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GithubLoginButton: View {
     @Environment(\.colorScheme) var colorScheme
-    
+
     private let loginURL: URL?
     private let completion: (URL) -> Void
 
@@ -34,9 +34,9 @@ struct GithubLoginButton: View {
             Spacer()
 
             if colorScheme == .light {
-                GithubLogoImage()
+                icon
             } else {
-                GithubLogoImage()
+                icon
                     .colorInvert()
             }
 
@@ -55,14 +55,24 @@ struct GithubLoginButton: View {
                 .stroke(Color("ReverseBackground"), lineWidth: 2)
         )
     }
+
+    private var icon: some View {
+        Image("github_icon")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .cornerRadius(20)
+            .padding(10)
+    }
 }
 
 struct GithubLoginButton_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = LoginViewModel()
+        let viewModel = LoginViewModel(ModelData().githubAPI)
 
-        GithubLoginButton(url: viewModel.githubLoginURL, completion: viewModel.githubLoginCompletion)
-            .frame(width: 300, height: 50)
-            .environment(\.colorScheme, .dark)
+        ForEach(ColorScheme.allCases, id: \.self) { color in
+            GithubLoginButton(url: viewModel.url, completion: viewModel.completion)
+                .frame(width: 300, height: 50)
+                .preferredColorScheme(color)
+        }
     }
 }
