@@ -1,0 +1,32 @@
+name: Publish with HOST
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            export DATABASE_HOST=${{ secrets.DATABASE_HOST }}
+            export DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}
+            export DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
+
+            export GITHUB_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}
+            export GITHUB_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}
+
+            cd ~/Tenta
+            git checkout develop
+            git pull origin develop
+            cd tenta-server
+            ./gradlew bootRun
