@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct TentaApp: App {
-    @StateObject var modelData = ModelData()
+    @StateObject var contentViewModel = ContentViewModel(GithubAPIManager())
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(modelData)
+                .environmentObject(contentViewModel)
         }
     }
 

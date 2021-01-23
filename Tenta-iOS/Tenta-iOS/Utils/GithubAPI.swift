@@ -14,12 +14,16 @@ protocol GithubLogin {
     func githubLoginCompletion(_ url: URL)
 }
 
-final class GithubAPIManager {
+protocol GithubAPI: GithubLogin {
+    var token: String? { get }
+}
+
+final class GithubAPIManager: GithubAPI, ObservableObject {
     @Published var token: String?
 }
 
 // MARK: Github Login
-extension GithubAPIManager: GithubLogin {
+extension GithubAPIManager {
     var githubLoginURL: URL? {
         let clientID = ""
         let scope = "repo, user"

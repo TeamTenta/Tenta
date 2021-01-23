@@ -8,16 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var modelData: ModelData
+    @EnvironmentObject var viewModel: ContentViewModel
 
     var body: some View {
-        LoginView(viewModel: LoginViewModel(modelData.githubAPI))
+        if viewModel.hasToken {
+            MainView()
+        } else {
+            LoginView()
+                .environmentObject(viewModel.loginViewModel)
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+    let gitnubAPI = GithubAPIManager()
+
     static var previews: some View {
         ContentView()
-            .environmentObject(ModelData())
+            .environmentObject(ContentViewModel(GithubAPIManager()))
     }
 }

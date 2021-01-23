@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    let viewModel: LoginViewModel
+    @EnvironmentObject var viewModel: LoginViewModel
 
     var body: some View {
         VStack {
@@ -20,7 +20,7 @@ struct LoginView: View {
 
             Spacer()
 
-            GithubLoginButton(url: viewModel.url, completion: viewModel.completion)
+            GithubLoginButton()
                 .aspectRatio(10, contentMode: .fit)
                 .padding([.leading, .trailing], 30)
                 .padding([.top, .bottom], 20)
@@ -31,8 +31,9 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) { color in
-            LoginView(viewModel: LoginViewModel(ModelData().githubAPI))
+            LoginView()
                 .preferredColorScheme(color)
         }
+        .environmentObject(LoginViewModel(GithubAPIManager()))
     }
 }

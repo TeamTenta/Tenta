@@ -9,21 +9,14 @@ import SwiftUI
 
 struct GithubLoginButton: View {
     @Environment(\.colorScheme) var colorScheme
-
-    private let loginURL: URL?
-    private let completion: (URL) -> Void
-
-    init(url: URL?, completion: @escaping (URL) -> Void) {
-        self.loginURL = url
-        self.completion = completion
-    }
+    @EnvironmentObject var viewModel: LoginViewModel
 
     var body: some View {
-        if let url = loginURL {
+        if let url = viewModel.url {
             Link(destination: url) {
                 frameBody
             }
-            .onOpenURL(perform: completion)
+            .onOpenURL(perform: viewModel.completion)
         } else {
             frameBody
         }
@@ -65,14 +58,13 @@ struct GithubLoginButton: View {
     }
 }
 
-struct GithubLoginButton_Previews: PreviewProvider {
+ struct GithubLoginButton_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = LoginViewModel(ModelData().githubAPI)
-
         ForEach(ColorScheme.allCases, id: \.self) { color in
-            GithubLoginButton(url: viewModel.url, completion: viewModel.completion)
-                .frame(width: 300, height: 50)
+            GithubLoginButton()
                 .preferredColorScheme(color)
         }
+        .frame(width: 300, height: 50)
+        .previewLayout(.sizeThatFits)
     }
-}
+ }
