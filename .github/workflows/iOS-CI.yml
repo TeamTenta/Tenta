@@ -9,9 +9,9 @@ jobs:
     runs-on: macos-latest
 
     env:
-      XC_VERSION: ${{ ‘12.1’ }}
-      XC_WORKSPACE: ${{ ‘Tenta/Tenta-iOS.xcworkspace’ }}
-      XC_SCHEME: ${{ ‘Tenta-iOSTests’ }}
+      XC_VERSION: ${{ '12.3' }}
+      XC_WORKSPACE: ${{ 'Tenta-iOS/Tenta-iOS.xcworkspace' }}
+      XC_SCHEME: ${{ 'Tenta-iOSTests' }}
       working-directory: ./Tenta-iOS
 
     steps:
