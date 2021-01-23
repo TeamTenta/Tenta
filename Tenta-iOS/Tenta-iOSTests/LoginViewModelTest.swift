@@ -9,7 +9,20 @@ import XCTest
 @testable import Tenta_iOS
 
 class LoginViewModelTest: XCTestCase {
-    func test_githubLoginCompletion_동작() {
+    func test_url_is_nil() {
+        let api = MockGithubAPI()
+        let viewModel = LoginViewModel(api)
+        XCTAssertNotNil(viewModel.url)
+    }
+
+    func test_url_is_not_nil() {
+        let api = MockGithubAPI()
+        api.githubLoginURL = nil
+        let viewModel = LoginViewModel(api)
+        XCTAssertNil(viewModel.url)
+    }
+
+    func test_githubLoginCompletion() {
         let exp = XCTestExpectation(description: "test completion")
         defer { wait(for: [exp], timeout: 5) }
 

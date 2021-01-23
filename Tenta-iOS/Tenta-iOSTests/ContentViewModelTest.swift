@@ -9,14 +9,11 @@ import XCTest
 @testable import Tenta_iOS
 
 class ContentViewModelTest: XCTestCase {
-    private var githubAPI: MockGithubAPI?
+    private let githubAPI = MockGithubAPI()
     private var viewModel: ContentViewModel?
 
     override func setUpWithError() throws {
-        let mockCompletion: (URL) -> Void = { _ in }
-        let api = MockGithubAPI(completion: mockCompletion)
-        githubAPI = api
-        viewModel = ContentViewModel(api)
+        viewModel = ContentViewModel(githubAPI)
     }
 
     func test_hasToken_true() throws {
@@ -24,7 +21,7 @@ class ContentViewModelTest: XCTestCase {
     }
 
     func test_hasToken_false() throws {
-        githubAPI!.token = "test"
+        githubAPI.token = "test"
         XCTAssertTrue(viewModel!.hasToken)
     }
 }
