@@ -16,6 +16,7 @@ class ContentViewModelTest: XCTestCase {
         viewModel = ContentViewModel(githubAPI)
     }
 
+    // MARK: hasToken
     func test_hasToken_true() throws {
         XCTAssertFalse(viewModel!.hasToken)
     }
