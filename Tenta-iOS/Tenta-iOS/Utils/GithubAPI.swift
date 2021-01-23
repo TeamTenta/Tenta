@@ -25,15 +25,8 @@ final class GithubAPIManager: GithubAPI, ObservableObject {
 // MARK: Github Login
 extension GithubAPIManager {
     var githubLoginURL: URL? {
-        let clientID = ""
-        let scope = "repo, user"
-        let urlString = "https://github.com/login/oauth/authorize"
-        var components = URLComponents(string: urlString)!
-        components.queryItems = [
-            URLQueryItem(name: "client_id", value: clientID),
-            URLQueryItem(name: "scope", value: scope)
-        ]
-        return components.url
+        // TODO: 서버에 맞게 변경
+        return URL(string: "https://www.apple.com/")
     }
 
     func githubLoginCompletion(_ url: URL) {
