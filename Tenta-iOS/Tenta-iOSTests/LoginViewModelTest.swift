@@ -17,7 +17,7 @@ class LoginViewModelTest: XCTestCase {
             exp.fulfill()
         }
 
-        let viewModel = LoginViewModel(MockGithubLogin(completion: mockCompletion))
+        let viewModel = LoginViewModel(MockGithubAPI(completion: mockCompletion))
         viewModel.completion(URL(string: "https://www.apple.com/")!)
     }
 }
