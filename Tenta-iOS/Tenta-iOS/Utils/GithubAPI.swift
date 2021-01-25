@@ -25,8 +25,8 @@ final class GithubAPIManager: GithubAPI, ObservableObject {
 // MARK: Github Login
 extension GithubAPIManager {
     var githubLoginURL: URL? {
-        // TODO: 서버에 맞게 변경
-        return URL(string: "https://www.apple.com/")
+        guard let urlString = Bundle.main.object(forInfoDictionaryKey: "Github login URL") as? String else { return nil }
+        return URL(string: urlString)
     }
 
     func githubLoginCompletion(_ url: URL) {
