@@ -28,5 +28,7 @@ jobs:
             cd ~/Tenta
             git checkout develop
             git pull origin develop
+
             cd tenta-server
+            chmod +x gradlew
             ./gradlew bootRun
