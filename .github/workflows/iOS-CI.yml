@@ -18,7 +18,7 @@ jobs:
       - name: Get the version
         run: |
           number=`echo $GITHUB_REF | cut -d / -f 3`
-          echo “ISSUE_NUMBER=$number” >> $GITHUB_ENV
+          echo "ISSUE_NUMBER=$number" >> $GITHUB_ENV
 
       - uses: actions/checkout@v2
 
@@ -28,10 +28,10 @@ jobs:
         shell: bash
 
       - name: Select latest Xcode
-        run: “sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app”
+        run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
 
       - name: Run Build and Unit Tests
-        run: /usr/bin/xcodebuild test -workspace “$XC_WORKSPACE” -scheme “$XC_SCHEME” -destination ‘platform=iOS Simulator,name=iPhone 11’
+        run: /usr/bin/xcodebuild test -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
 
       # Unit Test 성공했을 때 Slack에 Success Message 보냄
       - name: Slack Success Message
@@ -44,17 +44,17 @@ jobs:
           attachments: |
             [
               {
-                “color”: “good”,
-                “author_name”: “${{ github.actor }}“,
-                “author_icon”: “${{ github.event.sender.avatar_url }}“,
-                “fields”: [
+                "color": "good",
+                "author_name": "${{ github.actor }}",
+                "author_icon": "${{ github.event.sender.avatar_url }}",
+                "fields": [
                   {
-                    “title”: “Author”,
-                    “value”: “${{ github.actor }}”
+                    "title": "Author",
+                    "value": "${{ github.actor }}"
                   },
                   {
-                    “title”: “GitHub Pull Request URL”,
-                    “value”: “${{ github.event.repository.html_url }}/pull/${{ env.ISSUE_NUMBER }}”
+                    "title": "GitHub Pull Request URL",
+                    "value": "${{ github.event.repository.html_url }}/pull/${{ env.ISSUE_NUMBER }}"
                   }
                 ]
               }
@@ -71,17 +71,17 @@ jobs:
           attachments: |
             [
               {
-                “color”: “danger”,
-                “author_name”: “${{ github.actor }}“,
-                “author_icon”: “${{ github.event.sender.avatar_url }}“,
-                “fields”: [
+                "color": "danger",
+                "author_name": "${{ github.actor }}",
+                "author_icon": "${{ github.event.sender.avatar_url }}",
+                "fields": [
                   {
-                    “title”: “Author”,
-                    “value”: “${{ github.actor }}”
+                    "title": "Author",
+                    "value": "${{ github.actor }}"
                   },
                   {
-                    “title”: “GitHub Pull Request URL”,
-                    “value”: “${{ github.event.repository.html_url }}/pull/${{  env.ISSUE_NUMBER  }}”
+                    "title": "GitHub Pull Request URL",
+                    "value": "${{ github.event.repository.html_url }}/pull/${{  env.ISSUE_NUMBER  }}"
                   }
                 ]
               }
@@ -94,11 +94,11 @@ jobs:
         with:
           github-token: ${{ secrets.API_ACCESS_TOKEN }}
           script: |
-            const ref = “${{github.ref}}”
-            const pull_number = Number(ref.split(“/”)[2])
+            const ref = "${{github.ref}}"
+            const pull_number = Number(ref.split("/")[2])
             await github.issues.createComment({
               issue_number: pull_number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: ‘Test Code Fail:손인사: ’
+              body: 'Test Code Fail:손인사:'
             })

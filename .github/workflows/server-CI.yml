@@ -52,17 +52,17 @@ jobs:
           attachments: |
             [
               {
-                “color”: “good”,
-                “author_name”: “${{ github.actor }}“,
-                “author_icon”: “${{ github.event.sender.avatar_url }}“,
-                “fields”: [
+                "color": "good",
+                "author_name": "${{ github.actor }}",
+                "author_icon": "${{ github.event.sender.avatar_url }}",
+                "fields": [
                   {
-                    “title”: “Author”,
-                    “value”: “${{ github.actor }}”
+                    "title": "Author",
+                    "value": "${{ github.actor }}"
                   },
                   {
-                    “title”: “GitHub Pull Request URL”,
-                    “value”: “${{ github.event.repository.html_url }}/pull/${{ env.ISSUE_NUMBER }}”
+                    "title": "GitHub Pull Request URL",
+                    "value": "${{ github.event.repository.html_url }}/pull/${{ env.ISSUE_NUMBER }}"
                   }
                 ]
               }
@@ -79,17 +79,17 @@ jobs:
           attachments: |
             [
               {
-                “color”: “danger”,
-                “author_name”: “${{ github.actor }}“,
-                “author_icon”: “${{ github.event.sender.avatar_url }}“,
-                “fields”: [
+                "color": "danger",
+                "author_name": "${{ github.actor }}",
+                "author_icon": "${{ github.event.sender.avatar_url }}",
+                "fields": [
                   {
-                    “title”: “Author”,
-                    “value”: “${{ github.actor }}”
+                    "title": "Author",
+                    "value": "${{ github.actor }}"
                   },
                   {
-                    “title”: “GitHub Pull Request URL”,
-                    “value”: “${{ github.event.repository.html_url }}/pull/${{  env.ISSUE_NUMBER  }}”
+                    "title": "GitHub Pull Request URL",
+                    "value": "${{ github.event.repository.html_url }}/pull/${{  env.ISSUE_NUMBER  }}"
                   }
                 ]
               }
@@ -102,11 +102,11 @@ jobs:
         with:
           github-token: ${{ secrets.API_ACCESS_TOKEN }}
           script: |
-            const ref = “${{github.ref}}”
-            const pull_number = Number(ref.split(“/”)[2])
+            const ref = "${{github.ref}}"
+            const pull_number = Number(ref.split("/")[2])
             await github.issues.createComment({
               issue_number: pull_number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: ‘Test Code Fail:손인사: ’
+              body: 'Test Code Fail:손인사: '
             })
