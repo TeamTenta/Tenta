@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Github login URL</key>
-	<string>https://$(GITHUB_LOGIN_URL)</string>
+	<string>http://$(GITHUB_LOGIN_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
