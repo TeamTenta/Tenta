@@ -7,7 +7,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
       - name: executing remote ssh commands using password
@@ -31,4 +31,4 @@ jobs:
 
             cd tenta-server
             chmod +x gradlew
-            ./gradlew bootRun
+            ./gradlew build

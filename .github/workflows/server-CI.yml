@@ -7,7 +7,14 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
+    env:
+      DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+      DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+
+      GITHUB_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+      GITHUB_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
 
     steps:
       - uses: actions/checkout@v2
@@ -48,7 +55,7 @@ jobs:
         env:
           INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
-          text: :짠:Gradle Unit Test Success:짠:.
+          text: Gradle 테스트 성공!
           attachments: |
             [
               {
@@ -62,7 +69,7 @@ jobs:
                   },
                   {
                     "title": "GitHub Pull Request URL",
-                    "value": "${{ github.event.repository.html_url }}/pull/${{ env.ISSUE_NUMBER }}"
+                    "value": "${{ github.event.repository.html_url }}/pull/${{ github.event.number }}"
                   }
                 ]
               }
@@ -75,7 +82,7 @@ jobs:
         env:
           INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
-          text: :경광등:Gradle Unit Test Failure:경광등:.
+          text: Gradle 테스트 실패!
           attachments: |
             [
               {
@@ -89,7 +96,7 @@ jobs:
                   },
                   {
                     "title": "GitHub Pull Request URL",
-                    "value": "${{ github.event.repository.html_url }}/pull/${{  env.ISSUE_NUMBER  }}"
+                    "value": "${{ github.event.repository.html_url }}/pull/${{ github.event.number }}"
                   }
                 ]
               }
@@ -108,5 +115,5 @@ jobs:
               issue_number: pull_number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'Test Code Fail:손인사: '
+              body: '테스트 코드 실패!'
             })
