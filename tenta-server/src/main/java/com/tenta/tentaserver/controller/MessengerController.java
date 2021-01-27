@@ -11,9 +11,15 @@ import java.util.List;
 @RestController
 public class MessengerController {
 
+    private final MessengerService messengerService;
+
+    public MessengerController(MessengerService messengerService) {
+        this.messengerService = messengerService;
+    }
+
     @GetMapping("/users/{username}/messenger/rooms")
     public List<RoomDTO> getRooms(@PathVariable String username) {
-        return null;
+        return messengerService.getRooms(username);
     }
 
     @PostMapping("/messenger/rooms")
