@@ -6,6 +6,7 @@ on:
 
 jobs:
   build-and-UnitTest:
+    if: startsWith(github.head_ref, 'feature/ios_')
     runs-on: macos-latest
 
     env:
@@ -40,7 +41,7 @@ jobs:
         env:
           INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
-          text: :짠:iOS Unit Test Success:짠:.
+          text: iOS Unit 테스트 성공!
           attachments: |
             [
               {
@@ -54,7 +55,7 @@ jobs:
                   },
                   {
                     "title": "GitHub Pull Request URL",
-                    "value": "${{ github.event.repository.html_url }}/pull/${{ env.ISSUE_NUMBER }}"
+                    "value": "${{ github.event.repository.html_url }}/pull/${{ github.event.number }}"
                   }
                 ]
               }
@@ -67,7 +68,7 @@ jobs:
         env:
           INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
-          text: :경광등:iOS Unit Test Failure:경광등:.
+          text: iOS Unit 테스트 실패!
           attachments: |
             [
               {
@@ -81,7 +82,7 @@ jobs:
                   },
                   {
                     "title": "GitHub Pull Request URL",
-                    "value": "${{ github.event.repository.html_url }}/pull/${{  env.ISSUE_NUMBER  }}"
+                    "value": "${{ github.event.repository.html_url }}/pull/${{ github.event.number }}"
                   }
                 ]
               }
@@ -100,5 +101,5 @@ jobs:
               issue_number: pull_number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'Test Code Fail:손인사:'
+              body: '테스트 코드 실패!'
             })
