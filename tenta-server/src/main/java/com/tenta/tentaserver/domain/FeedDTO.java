@@ -88,6 +88,15 @@ public class FeedDTO {
                                 .build())
                         .build();
             case PULL_REQUEST_EVENT:
+                Map pullRequest = (Map) payload.get("pull_request");
+                return PullRequestEvent.builder()
+                        .action((String) payload.get("action"))
+                        .pullRequest(PullRequest.builder()
+                                .htmlUrl((String) pullRequest.get("html_url"))
+                                .title((String) pullRequest.get("title"))
+                                .body((String) pullRequest.get("body"))
+                                .build())
+                        .build();
             case PUSH_EVENT:
                 List<Commit> commits = new ArrayList<>();
                 for (Object commit : ((List) payload.get("commits"))) {
@@ -96,6 +105,7 @@ public class FeedDTO {
                             .build());
                 }
                 return PushEvent.builder()
+                        .ref((String) payload.get("ref"))
                         .commits(commits)
                         .build();
             case RELEASE_EVENT:

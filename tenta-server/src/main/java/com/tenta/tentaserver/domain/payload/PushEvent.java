@@ -9,10 +9,12 @@ import java.util.List;
 @Getter
 public class PushEvent implements Payload {
 
+    private final String ref;
     private final List<Commit> commits;
 
     @Builder
-    public PushEvent(List<Commit> commits) {
+    public PushEvent(String ref, List<Commit> commits) {
+        this.ref = ref;
         this.commits = commits;
     }
 }
