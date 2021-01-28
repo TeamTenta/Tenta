@@ -1,5 +1,7 @@
 package com.tenta.tentaserver.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,10 +17,25 @@ public class Participant {
     private long id;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "User_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "Room_id")
+    @JsonBackReference
     private Room room;
+
+    @Builder
+    public Participant(User user, Room room) {
+        this.user = user;
+        this.room = room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+
+        if (!room.getParticipants().contains(this)) {
+            room.getParticipants().add(this);
+        }
+    }
 }
