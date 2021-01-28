@@ -1,7 +1,7 @@
 package com.tenta.tentaserver.domain.github;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.tenta.tentaserver.domain.FeedDTO;
+import com.tenta.tentaserver.domain.dto.FeedDTO;
 import com.tenta.tentaserver.domain.FeedType;
 import lombok.Getter;
 
