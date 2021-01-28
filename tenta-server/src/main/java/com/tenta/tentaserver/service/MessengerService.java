@@ -4,6 +4,7 @@ import com.tenta.tentaserver.domain.Chat;
 import com.tenta.tentaserver.domain.Participant;
 import com.tenta.tentaserver.domain.Room;
 import com.tenta.tentaserver.domain.User;
+import com.tenta.tentaserver.domain.dto.ChatDTO;
 import com.tenta.tentaserver.domain.dto.RoomDTO;
 import com.tenta.tentaserver.repository.ChatRepository;
 import com.tenta.tentaserver.repository.ParticipantRepository;
@@ -58,8 +59,15 @@ public class MessengerService {
         roomRepository.save(newRoom);
     }
 
+    public List<ChatDTO> getChats(long roomId) {
+        return chatRepository.findAllByRoomId(roomId)
+                .stream()
+                .map(ChatDTO::toChatDTO)
+                .collect(Collectors.toList());
+    }
+
     private RoomDTO toRoomDTO(Room room) {
-        List<Chat> chats = chatRepository.findByRoom(room);
+        List<Chat> chats = chatRepository.findAllByRoom(room);
 
         return RoomDTO.builder()
                 .id(room.getId())

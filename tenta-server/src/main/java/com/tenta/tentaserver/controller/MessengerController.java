@@ -1,5 +1,6 @@
 package com.tenta.tentaserver.controller;
 
+import com.tenta.tentaserver.domain.dto.ChatDTO;
 import com.tenta.tentaserver.domain.dto.RoomDTO;
 import com.tenta.tentaserver.service.MessengerService;
 import org.slf4j.Logger;
@@ -32,6 +33,6 @@ public class MessengerController {
 
     @GetMapping("/messenger/rooms/{room_id}/chats")
     public List<ChatDTO> getChats(@PathVariable("room_id") long roomId) {
-        return null;
+        return messengerService.getChats(roomId);
     }
 }

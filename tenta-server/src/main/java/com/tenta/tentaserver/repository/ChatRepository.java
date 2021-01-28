@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface ChatRepository extends JpaRepository<Chat, Long> {
 
-    List<Chat> findByRoom(Room room);
+    List<Chat> findAllByRoom(Room room);
+    List<Chat> findAllByRoomId(long room);
 }

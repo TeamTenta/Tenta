@@ -1,5 +1,6 @@
 package com.tenta.tentaserver.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -22,7 +23,12 @@ public class Chat {
     private String content;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "User_id")
+    private User sender;
+
+    @ManyToOne
+    @JoinColumn(name = "Room_id")
+    @JsonBackReference
     private Room room;
 
     @CreatedDate
