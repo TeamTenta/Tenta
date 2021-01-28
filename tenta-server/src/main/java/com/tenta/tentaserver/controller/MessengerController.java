@@ -1,8 +1,7 @@
 package com.tenta.tentaserver.controller;
 
-import com.tenta.tentaserver.domain.ChatDTO;
-import com.tenta.tentaserver.domain.RoomDTO;
-import com.tenta.tentaserver.domain.UserDTO;
+import com.tenta.tentaserver.domain.dto.ChatDTO;
+import com.tenta.tentaserver.domain.dto.RoomDTO;
 import com.tenta.tentaserver.service.MessengerService;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +22,8 @@ public class MessengerController {
     }
 
     @PostMapping("/messenger/rooms")
-    public void createRoom(@RequestBody UserDTO receiver) {
-
+    public void createRoom(@RequestBody List<Long> participantIds) {
+        messengerService.createRoom(participantIds);
     }
 
     @PatchMapping("/messenger/rooms/{room_id}")
