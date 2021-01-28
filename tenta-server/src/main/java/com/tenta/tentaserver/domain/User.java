@@ -3,7 +3,6 @@ package com.tenta.tentaserver.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -45,11 +44,9 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
-    @CreatedDate
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @CreatedDate
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
