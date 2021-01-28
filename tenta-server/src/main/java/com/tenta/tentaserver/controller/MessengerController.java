@@ -1,6 +1,5 @@
 package com.tenta.tentaserver.controller;
 
-import com.tenta.tentaserver.domain.dto.ChatDTO;
 import com.tenta.tentaserver.domain.dto.RoomDTO;
 import com.tenta.tentaserver.service.MessengerService;
 import org.slf4j.Logger;
@@ -29,11 +28,6 @@ public class MessengerController {
     public void createRoom(@RequestBody List<Long> participantIds) {
         messengerService.createRoom(participantIds);
         logger.info("[MessengerController] Create Room Success");
-    }
-
-    @PatchMapping("/messenger/rooms/{room_id}")
-    public void updateRoom(@PathVariable("room_id") long roomId) {
-
     }
 
     @GetMapping("/messenger/rooms/{room_id}/chats")
