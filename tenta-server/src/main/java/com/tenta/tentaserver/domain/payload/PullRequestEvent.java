@@ -1,21 +1,18 @@
 package com.tenta.tentaserver.domain.payload;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tenta.tentaserver.domain.github.PullRequest;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 public class PullRequestEvent implements Payload {
 
-    @JsonProperty("html_url")
-    private final String htmlURL;
-    private final String title;
-    private final String body;
+    private final String action;
+    private final PullRequest pullRequest;
 
     @Builder
-    public PullRequestEvent(String htmlURL, String title, String body) {
-        this.htmlURL = htmlURL;
-        this.title = title;
-        this.body = body;
+    public PullRequestEvent(String action, PullRequest pullRequest) {
+        this.action = action;
+        this.pullRequest = pullRequest;
     }
 }
