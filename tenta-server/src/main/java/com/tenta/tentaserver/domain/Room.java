@@ -1,6 +1,5 @@
 package com.tenta.tentaserver.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,7 +24,6 @@ public class Room {
     private RoomStatus status = RoomStatus.OPENED;
 
     @OneToMany(mappedBy = "room")
-    @JsonManagedReference
     private List<Participant> participants = new ArrayList<>();
 
     @CreatedDate

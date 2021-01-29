@@ -5,6 +5,7 @@ import com.tenta.tentaserver.domain.Participant;
 import com.tenta.tentaserver.domain.Room;
 import com.tenta.tentaserver.domain.User;
 import com.tenta.tentaserver.domain.dto.ChatDTO;
+import com.tenta.tentaserver.domain.dto.ParticipantDTO;
 import com.tenta.tentaserver.domain.dto.RoomDTO;
 import com.tenta.tentaserver.repository.ChatRepository;
 import com.tenta.tentaserver.repository.ParticipantRepository;
@@ -74,7 +75,9 @@ public class MessengerService {
 
         return RoomDTO.builder()
                 .id(room.getId())
-                .participants(room.getParticipants())
+                .participants(room.getParticipants().stream()
+                        .map(ParticipantDTO::toParticipantDTO)
+                        .collect(Collectors.toList()))
                 .createAt(room.getCreatedAt())
                 .lastMessageTime(chats.isEmpty() ? null : chats.get(0).getCreateAt())
                 .build();

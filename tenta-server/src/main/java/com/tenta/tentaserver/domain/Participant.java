@@ -1,6 +1,5 @@
 package com.tenta.tentaserver.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,6 @@ public class Participant {
 
     @ManyToOne
     @JoinColumn(name = "Room_id")
-    @JsonBackReference
     private Room room;
 
     @Builder
