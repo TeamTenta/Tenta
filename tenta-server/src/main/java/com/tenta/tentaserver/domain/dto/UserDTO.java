@@ -1,5 +1,6 @@
 package com.tenta.tentaserver.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tenta.tentaserver.domain.User;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,6 +15,8 @@ public class UserDTO implements Serializable {
     private final long id;
     private final String username;
     private final String name;
+
+    @JsonProperty("avatar_url")
     private final String avatarUrl;
     private final String url;
 

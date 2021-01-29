@@ -18,6 +18,8 @@ public class RoomDTO implements Serializable {
 
     @JsonProperty("created_at")
     private LocalDateTime createAt;
+
+    @JsonProperty("last_message_time")
     private LocalDateTime lastMessageTime;
 
     @Builder
