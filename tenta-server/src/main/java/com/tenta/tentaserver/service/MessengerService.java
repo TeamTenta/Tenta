@@ -54,7 +54,10 @@ public class MessengerService {
                 .map(participant -> Participant.builder()
                         .user(participant)
                         .build())
-                .forEach(newRoom::addParticipants);
+                .forEach(participant -> {
+                    newRoom.addParticipants(participant);
+                    participantRepository.save(participant);
+                });
 
         roomRepository.save(newRoom);
     }
