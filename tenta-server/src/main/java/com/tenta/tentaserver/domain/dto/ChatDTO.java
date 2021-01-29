@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 @Getter
 public class ChatDTO implements Serializable {
 
+    private static final long serialVersionUID = -570655422953810178L;
+
     private final long id;
     private final UserDTO sender;
     private final String content;

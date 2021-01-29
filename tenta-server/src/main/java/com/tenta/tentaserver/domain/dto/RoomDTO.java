@@ -11,6 +11,8 @@ import java.util.List;
 @Getter
 public class RoomDTO implements Serializable {
 
+    private static final long serialVersionUID = -4553300242704495300L;
+
     private final long id;
     private List<ParticipantDTO> participants;
 

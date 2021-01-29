@@ -7,6 +7,7 @@ import com.tenta.tentaserver.domain.payload.*;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,9 @@ import java.util.Objects;
 import static com.tenta.tentaserver.domain.FeedType.getFeedType;
 
 @Getter
-public class FeedDTO {
+public class FeedDTO implements Serializable {
+
+    private static final long serialVersionUID = -4661726706992032049L;
 
     private final String type;
     private final Actor actor;

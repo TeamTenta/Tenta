@@ -9,6 +9,8 @@ import java.io.Serializable;
 @Getter
 public class ParticipantDTO implements Serializable {
 
+    private static final long serialVersionUID = -7264501175893549117L;
+
     private UserDTO user;
 
     @Builder
