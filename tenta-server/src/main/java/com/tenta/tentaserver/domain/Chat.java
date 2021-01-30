@@ -1,5 +1,6 @@
 package com.tenta.tentaserver.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -32,4 +33,13 @@ public class Chat {
     @CreatedDate
     @Column(nullable = false)
     private LocalDateTime createAt;
+
+    @Builder
+    public Chat(long id, String content, User sender, Room room, LocalDateTime createAt) {
+        this.id = id;
+        this.content = content;
+        this.sender = sender;
+        this.room = room;
+        this.createAt = createAt;
+    }
 }
