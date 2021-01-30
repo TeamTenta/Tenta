@@ -7,6 +7,7 @@ import com.tenta.tentaserver.domain.User;
 import com.tenta.tentaserver.domain.dto.ChatDTO;
 import com.tenta.tentaserver.domain.dto.ParticipantDTO;
 import com.tenta.tentaserver.domain.dto.RoomDTO;
+import com.tenta.tentaserver.exception.UserNotFoundException;
 import com.tenta.tentaserver.repository.ChatRepository;
 import com.tenta.tentaserver.repository.ParticipantRepository;
 import com.tenta.tentaserver.repository.RoomRepository;
@@ -34,8 +35,7 @@ public class MessengerService {
     }
 
     public List<RoomDTO> getRooms(String username) {
-        User user = userRepository.findByUsername(username).orElse(null);
-        Objects.requireNonNull(user);
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
 
         List<Participant> participants = participantRepository.findAllByUser(user);
         return participants.stream()

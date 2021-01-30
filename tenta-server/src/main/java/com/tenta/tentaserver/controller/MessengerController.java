@@ -5,6 +5,7 @@ import com.tenta.tentaserver.domain.dto.RoomDTO;
 import com.tenta.tentaserver.service.MessengerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class MessengerController {
     }
 
     @PostMapping("/messenger/rooms")
+    @ResponseStatus(HttpStatus.CREATED)
     public void createRoom(@RequestBody List<Long> participantIds) {
         messengerService.createRoom(participantIds);
         logger.info("[MessengerController] Create Room Success");
