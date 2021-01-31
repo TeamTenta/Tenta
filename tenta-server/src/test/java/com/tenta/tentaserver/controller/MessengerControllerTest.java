@@ -81,15 +81,17 @@ class MessengerControllerTest {
     }
 
     @Test
-    void createRoomTest() throws Exception {
+    void createRoomTest() {
         List<Long> participantIds = new ArrayList<>();
         participantIds.add(1L);
 
-        mockMvc.perform(post("/messenger/rooms")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(Strings.asJsonString(participantIds)))
-                .andDo(print())
-                .andExpect(status().isCreated());
+        Assertions.assertDoesNotThrow(() -> {
+            mockMvc.perform(post("/messenger/rooms")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(Strings.asJsonString(participantIds)))
+                    .andDo(print())
+                    .andExpect(status().isCreated());
+        });
     }
 
     @Test
