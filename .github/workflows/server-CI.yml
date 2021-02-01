@@ -50,6 +50,14 @@ jobs:
           cd tenta-server
           ./gradlew test
 
+      - name: Coveralls GitHub Action
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        run: |
+          pwd
+          cd tenta-server
+          ./gradlew jacocoTestReport coveralls
+
       - name: Slack Success Message
         if: success()
         uses: tokorom/action-slack-incoming-webhook@v1.1.3
