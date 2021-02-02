@@ -18,15 +18,17 @@ public class UserDTO implements Serializable {
 
     @JsonProperty("avatar_url")
     private final String avatarUrl;
-    private final String url;
+
+    @JsonProperty("html_url")
+    private final String htmlUrl;
 
     @Builder
-    public UserDTO(long id, String username, String name, String avatarUrl, String url) {
+    public UserDTO(long id, String username, String name, String avatarUrl, String htmlUrl) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.avatarUrl = avatarUrl;
-        this.url = url;
+        this.htmlUrl = htmlUrl;
     }
 
     public static UserDTO toUserDTO(User user) {
@@ -35,7 +37,7 @@ public class UserDTO implements Serializable {
                 .username(user.getUsername())
                 .name(user.getName())
                 .avatarUrl(user.getAvatarUrl())
-                .url(user.getUrl())
+                .htmlUrl(user.getHtmlUrl())
                 .build();
     }
 }

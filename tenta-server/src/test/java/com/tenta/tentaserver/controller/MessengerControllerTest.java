@@ -56,7 +56,7 @@ class MessengerControllerTest {
                         .username("presentUser")
                         .name("name")
                         .avatarUrl("avatar_url")
-                        .url("url")
+                        .htmlUrl("url")
                         .build())
                 .build());
 
@@ -105,7 +105,7 @@ class MessengerControllerTest {
                         .username("presentUser")
                         .name("name")
                         .avatarUrl("avatar_url")
-                        .url("url")
+                        .htmlUrl("url")
                         .build())
                 .build());
 

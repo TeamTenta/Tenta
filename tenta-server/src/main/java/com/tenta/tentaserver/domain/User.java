@@ -29,7 +29,7 @@ public class User {
     private String avatarUrl;
 
     @Column(nullable = false, length = 200)
-    private String url;
+    private String htmlUrl;
 
     @Column
     private int reposCount;
@@ -55,7 +55,7 @@ public class User {
                 String name,
                 String description,
                 String avatarUrl,
-                String url,
+                String htmlUrl,
                 int reposCount,
                 int followersCount,
                 int followingCount,
@@ -66,7 +66,7 @@ public class User {
         this.name = name;
         this.description = description;
         this.avatarUrl = avatarUrl;
-        this.url = url;
+        this.htmlUrl = htmlUrl;
         this.reposCount = reposCount;
         this.followersCount = followersCount;
         this.followingCount = followingCount;

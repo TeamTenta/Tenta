@@ -9,7 +9,9 @@ public class Actor {
 
     @JsonProperty("login")
     private String username;
-    private String url;
+
+    @JsonProperty("html_url")
+    private String htmlUrl;
 
     @JsonProperty("avatar_url")
     private String avatarUrl;
@@ -18,9 +20,9 @@ public class Actor {
     }
 
     @Builder
-    public Actor(String username, String url, String avatarUrl) {
+    public Actor(String username, String htmlUrl, String avatarUrl) {
         this.username = username;
-        this.url = url;
+        this.htmlUrl = htmlUrl;
         this.avatarUrl = avatarUrl;
     }
 }

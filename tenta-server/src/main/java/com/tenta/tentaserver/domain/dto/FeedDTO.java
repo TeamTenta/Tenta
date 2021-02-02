@@ -87,7 +87,7 @@ public class FeedDTO implements Serializable {
                         .action((String) payload.get("action"))
                         .member(Actor.builder()
                                 .username((String) member.get("login"))
-                                .url((String) member.get("url"))
+                                .htmlUrl((String) member.get("html_url"))
                                 .avatarUrl((String) member.get("avatar_url"))
                                 .build())
                         .build();
