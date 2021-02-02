@@ -1,6 +1,6 @@
 package com.tenta.tentaserver.controller;
 
-import com.tenta.tentaserver.domain.FeedDTO;
+import com.tenta.tentaserver.domain.dto.FeedDTO;
 import com.tenta.tentaserver.service.FeedService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

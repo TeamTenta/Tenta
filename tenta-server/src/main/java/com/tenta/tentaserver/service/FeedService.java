@@ -1,6 +1,6 @@
 package com.tenta.tentaserver.service;
 
-import com.tenta.tentaserver.domain.FeedDTO;
+import com.tenta.tentaserver.domain.dto.FeedDTO;
 import com.tenta.tentaserver.domain.github.Event;
 import org.springframework.stereotype.Service;
 

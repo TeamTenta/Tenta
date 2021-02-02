@@ -1,11 +1,13 @@
-package com.tenta.tentaserver.domain;
+package com.tenta.tentaserver.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tenta.tentaserver.domain.FeedType;
 import com.tenta.tentaserver.domain.github.*;
 import com.tenta.tentaserver.domain.payload.*;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,9 @@ import java.util.Objects;
 import static com.tenta.tentaserver.domain.FeedType.getFeedType;
 
 @Getter
-public class FeedDTO {
+public class FeedDTO implements Serializable {
+
+    private static final long serialVersionUID = -4661726706992032049L;
 
     private final String type;
     private final Actor actor;
@@ -83,7 +87,7 @@ public class FeedDTO {
                         .action((String) payload.get("action"))
                         .member(Actor.builder()
                                 .username((String) member.get("login"))
-                                .url((String) member.get("url"))
+                                .htmlUrl((String) member.get("html_url"))
                                 .avatarUrl((String) member.get("avatar_url"))
                                 .build())
                         .build();

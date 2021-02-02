@@ -3,7 +3,6 @@ package com.tenta.tentaserver.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,8 +13,8 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(nullable = false, unique = true, length = 40)
     private String username;
@@ -30,7 +29,7 @@ public class User {
     private String avatarUrl;
 
     @Column(nullable = false, length = 200)
-    private String url;
+    private String htmlUrl;
 
     @Column
     private int reposCount;
@@ -45,11 +44,9 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
-    @CreatedDate
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @CreatedDate
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
@@ -58,7 +55,7 @@ public class User {
                 String name,
                 String description,
                 String avatarUrl,
-                String url,
+                String htmlUrl,
                 int reposCount,
                 int followersCount,
                 int followingCount,
@@ -69,7 +66,7 @@ public class User {
         this.name = name;
         this.description = description;
         this.avatarUrl = avatarUrl;
-        this.url = url;
+        this.htmlUrl = htmlUrl;
         this.reposCount = reposCount;
         this.followersCount = followersCount;
         this.followingCount = followingCount;

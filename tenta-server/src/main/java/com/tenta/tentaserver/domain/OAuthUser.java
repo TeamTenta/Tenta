@@ -46,7 +46,7 @@ public class OAuthUser {
                     .name((String) attributes.get("name"))
                     .description((String) attributes.get("bio"))
                     .avatarUrl((String) attributes.get("avatar_url"))
-                    .url((String) attributes.get("html_url"))
+                    .htmlUrl((String) attributes.get("html_url"))
                     .reposCount((int) getAttributes().get("public_repos"))
                     .followersCount((int) getAttributes().get("followers"))
                     .followingCount((int) getAttributes().get("following"))
